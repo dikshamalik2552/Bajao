@@ -25,7 +25,7 @@ public class PlaySong extends AppCompatActivity {
     }
 
     TextView textView;
-    ImageView play;
+    ImageView pause;
     ImageView prev;
     ImageView next;
     ArrayList<File> songs;
@@ -39,7 +39,7 @@ public class PlaySong extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_play_song);
         textView = findViewById(R.id.textView);
-        play = findViewById(R.id.play);
+        pause = findViewById(R.id.pause);
         prev = findViewById(R.id.prev);
         next = findViewById(R.id.next);
         seekBar = findViewById(R.id.seekBar);
@@ -90,14 +90,14 @@ public class PlaySong extends AppCompatActivity {
         };
         updateseekBar.start();
 
-        play.setOnClickListener(new View.OnClickListener() {
+        pause.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(mediaPlayer.isPlaying()){
-                    play.setImageResource(R.drawable.play);
+                    pause.setImageResource(R.drawable.play);
                     mediaPlayer.pause();
                 }else {
-                    play.setImageResource(R.drawable.pause);
+                    pause.setImageResource(R.drawable.pause);
                     mediaPlayer.start();
                 }
             }
@@ -116,7 +116,7 @@ public class PlaySong extends AppCompatActivity {
                 Uri uri = Uri.parse(songs.get(position).toString());
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
                 mediaPlayer.start();
-                play.setImageResource(R.drawable.pause);
+                pause.setImageResource(R.drawable.pause);
                 seekBar.setMax(mediaPlayer.getDuration());
                 textView.setText(songs.get(position).getName().toString());
             }
@@ -135,7 +135,7 @@ public class PlaySong extends AppCompatActivity {
                 Uri uri = Uri.parse(songs.get(position).toString());
                 mediaPlayer = MediaPlayer.create(getApplicationContext(), uri);
                 mediaPlayer.start();
-                play.setImageResource(R.drawable.pause);
+                pause.setImageResource(R.drawable.pause);
                 seekBar.setMax(mediaPlayer.getDuration());
                 textView.setText(songs.get(position).getName().toString());
             }
